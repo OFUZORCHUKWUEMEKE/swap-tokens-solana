@@ -1,7 +1,7 @@
 use crate::{Offer};
 use anchor_lang::prelude::*;
 use anchor_spl::associated_token::AssociatedToken;
-use anchor_spl::token_interface::{Mint, TokenAccount, TokenInterface,TransferChecked,transfer_checked,CloseAccount};
+use anchor_spl::token_interface::{Mint, TokenAccount, TokenInterface,TransferChecked,transfer_checked,CloseAccount,close_account};
 
 use super::transfer_tokens;
 
@@ -77,10 +77,11 @@ pub fn withdraw_amcd_close_vault(context:Context<TakeOffer>)->Result<()>{
         context.accounts.vault.amount,
         context.accounts.token_mint_a.decimals
     )?;
-    let _account = CloseAccount{
-        account:context.accounts.vault.to_account_info(),
-        destination:context.accounts.taker.to_account_info(),
-        authority:context.accounts.offer.to_account_info()
-    };
+    // let _account = CloseAccount{
+    //     account:context.accounts.vault.to_account_info(),
+    //     destination:context.accounts.taker.to_account_info(),
+    //     authority:context.accounts.offer.to_account_info()
+    // };
+    // close_account(cpi_context)?;
     Ok(())
 }
